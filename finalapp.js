@@ -1,13 +1,3 @@
-/*
-GAME RULES:
-
-- The game has 2 players, playing in rounds
-- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
-- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
-- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
-- The first player to reach 100 points on GLOBAL score wins the game
-
-*/
 
 var scores , roundScore , activePlayer , gamePlaying ; 
 initStartFunction();
@@ -36,8 +26,6 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     } else { 
          nextPlayer(); 
     }   
-   // console.log(dice+ '  dice');
-    //console.log(lastDice+ '  lastDice');
 }
  });   
 
@@ -48,16 +36,14 @@ document.querySelector('.btn-hold').addEventListener('click' , function () {
     // 2. update the user interface 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-var inputScore = document.querySelector('.final-score').value; var winingScore;
+  var inputScore = document.querySelector('.final-score').value; var winingScore;
     if(inputScore) {    
         winingScore = inputScore;
     } else {
          winingScore = 100;
-};
-
-// 3. check if player won the game
- if(scores[activePlayer] >= winingScore) // 100 )
- {
+    }
+    // 3. check if player won the game
+    if(scores[activePlayer] >= winingScore) {
      document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
 
      document.getElementById('dice-1').style.display = 'none';
@@ -67,10 +53,10 @@ var inputScore = document.querySelector('.final-score').value; var winingScore;
     document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
 
      gamePlaying = false;
- } else {
-    nextPlayer();
- };
-}
+    } else {
+         nextPlayer();
+    };
+    }
 });
 
 function nextPlayer(){
